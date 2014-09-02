@@ -1,0 +1,21 @@
+{
+  "name": "angular-chartist",
+  "version": "0.0.1",
+  "authors": [
+    "Itamar Weiss <weiss.itamar@gmail.com>"
+  ],
+  "description": "A Chartist directive for Angular.js",
+  "main": "chartist.js",
+  "keywords": [
+    "chartist",
+    "angular.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
