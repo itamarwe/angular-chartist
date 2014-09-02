@@ -1,15 +1,16 @@
 (function(){
   var angularChartist = angular.module('angular-chartist', []);
 
-  angularChartist.directive('chartistLine', function() {
+  angularChartist.directive('chartistLine', function(selectorFromElement {
     var linkFn = function(scope, elm, attrs) {
       var data, options, responsiveOptions, selector, updateChart;
       data = scope.data;
       options = scope.options;
       responsiveOptions = scope.responsiveOptions;
+      selector = selectorFromElement(elm);
 
       updateChart = function(){
-        Chartist.Line(elm.context, data, options, responsiveOptions);
+        Chartist.Line(selector, data, options, responsiveOptions);
       };
 
       scope.$watch('data', function(newValue, oldValue){
@@ -33,15 +34,16 @@
     };
   });
 
-  angularChartist.directive('chartistPie', function() {
+  angularChartist.directive('chartistPie', function(selectorFromElement) {
     var linkFn = function(scope, elm, attrs) {
       var data, options, responsiveOptions, selector, updateChart;
       data = scope.data;
       options = scope.options;
       responsiveOptions = scope.responsiveOptions;
+      selector = selectorFromElement(elm);
 
       updateChart = function(){
-        Chartist.Pie(elm.context, data, options, responsiveOptions);
+        Chartist.Pie(selector, data, options, responsiveOptions);
       };
 
       scope.$watch('data', function(newValue, oldValue){
@@ -65,15 +67,16 @@
     };
   });
 
-  angularChartist.directive('chartistBar', function() {
+  angularChartist.directive('chartistBar', function(selectorFromElement) {
     var linkFn = function(scope, elm, attrs) {
       var data, options, responsiveOptions, selector, updateChart;
       data = scope.data;
       options = scope.options;
       responsiveOptions = scope.responsiveOptions;
+      selector = selectorFromElement(elm);
 
       updateChart = function(){
-        Chartist.Bar(elm.context, data, options, responsiveOptions);
+        Chartist.Bar(selector, data, options, responsiveOptions);
       };
 
       scope.$watch('data', function(newValue, oldValue){
@@ -95,5 +98,28 @@
       },
       link: linkFn
     };
+  });
+
+  angularChartist.factory('selectorFromElement', function(){
+    var getSelectorFromElm = function(elm) {
+      var classNames, id, selector;
+      selector = elm.parents().map(function() {
+        return this.tagName;
+      }).get().reverse().join(" ");
+
+      if (selector) {
+        selector += " " + elm[0].nodeName;
+        id = elm.attr("id");
+        if (id) {
+          selector += "#" + id;
+        }
+        classNames = elm.attr("class");
+        if (classNames) {
+          selector += "." + $.trim(classNames).replace(/\s/gi, ".");
+        }
+      }
+      return selector;
+    };
+    return getSelectorFromElm;
   });
 })();
