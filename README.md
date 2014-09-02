@@ -3,7 +3,12 @@ angular-chartist
 
 Chartist directive for Angular.js
 
-Usage:
+Installation
+=================
+````
+bower install angular-chartist
+````
+Usage
 =================
 ````
 var myApp = angular.module('myApp',['angular-chartist']);
