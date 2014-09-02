@@ -1,8 +1,7 @@
 var angularChartist = angular.module('angular-chartist', []);
 
 angularChartist.directive('chartist', function() {
-  var getSelectorFromElm, linkFn;
-  getSelectorFromElm = function(elm) {
+  var getSelectorFromElm = function(elm) {
     var classNames, id, selector;
     selector = elm.parents().map(function() {
       return this.tagName;
@@ -20,46 +19,24 @@ angularChartist.directive('chartist', function() {
     }
     return selector;
   };
-  linkFn = function(scope, elm, attrs) {
+
+  var linkFn = function(scope, elm, attrs) {
     var data, options, responsiveOptions, selector;
     data = scope.data;
-    options = {
-      axisX: {
-        labelInterpolationFnc: function(value) {
-          return value;
-        }
-      }
-    };
-    responsiveOptions = [
-      [
-        'screen and (min-width: 641px) and (max-width: 1024px)', {
-          showPoint: false,
-          axisX: {
-            labelInterpolationFnc: function(value) {
-              return value;
-            }
-          }
-        }
-      ], [
-        'screen and (max-width: 640px)', {
-          showLine: false,
-          axisX: {
-            labelInterpolationFnc: function(value) {
-              return value;
-            }
-          }
-        }
-      ]
-    ];
+    options = scope.options;
+    responsiveOptions = scope.responsiveOptions;
     selector = getSelectorFromElm(elm);
     return Chartist.Line(selector, data, options, responsiveOptions);
   };
+
   return {
     restrict: 'E',
     template: '<div class="ct-chart"></div>',
     replace: true,
     scope: {
-      data: '='
+      data: '=',
+      options: '=',
+      responsiveOptions: '='
     },
     link: linkFn
   };
