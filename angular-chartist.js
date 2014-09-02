@@ -21,12 +21,22 @@ angularChartist.directive('chartist', function() {
   };
 
   var linkFn = function(scope, elm, attrs) {
-    var data, options, responsiveOptions, selector;
+    var data, options, responsiveOptions, selector, updateChart;
     data = scope.data;
     options = scope.options;
     responsiveOptions = scope.responsiveOptions;
     selector = getSelectorFromElm(elm);
-    return Chartist.Line(selector, data, options, responsiveOptions);
+
+    updateChart = function(){
+      Chartist.Line(selector, data, options, responsiveOptions);
+    };
+
+    scope.$watch('data', function(newValue, oldValue){
+      data = newValue;
+      updateChart();
+    });
+
+    updateChart();
   };
 
   return {
