@@ -1,7 +1,7 @@
 (function(){
   var angularChartist = angular.module('angular-chartist', []);
 
-  angularChartist.directive('chartistLine', function(selectorFromElement {
+  angularChartist.directive('chartistLine', function(selectorFromElement) {
     var linkFn = function(scope, elm, attrs) {
       var data, options, responsiveOptions, selector, updateChart;
       data = scope.data;
