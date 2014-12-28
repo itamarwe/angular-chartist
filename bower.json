@@ -5,7 +5,7 @@
     "Itamar Weiss <weiss.itamar@gmail.com>"
   ],
   "description": "A Chartist directive for Angular.js",
-  "main": "chartist.js",
+  "main": "angular-chartist.js",
   "keywords": [
     "chartist",
     "angular.js"
