@@ -27,6 +27,11 @@
                 updateChart();
             });
 
+            scope.$watch('options', function (newValue, oldValue) {
+                options = newValue;
+                updateChart();
+            });
+
             updateChart();
         };
 
@@ -44,7 +49,4 @@
             link: linkFn
         };
     });
-
-
-
 })();
