@@ -3,10 +3,11 @@
 
     angularChartist.directive('chartist', function () {
         var linkFn = function (scope, elm, attrs) {
-            var data, options, responsiveOptions, selector, updateChart;
+            var data, options, responsiveOptions, selector, updateChart, deepWatchData, deepWatchOptions;
             data = scope.data;
             options = scope.options;
             responsiveOptions = scope.responsiveOptions;
+            deepwatch = scope.deepWatch;
             selector = "#" + scope.ngId;
             type = scope.type || 'line';
             elm.attr('id', scope.ngId);
@@ -25,12 +26,12 @@
             scope.$watch('data', function (newValue, oldValue) {
                 data = newValue;
                 updateChart();
-            });
+            }, deepWatchData);
 
             scope.$watch('options', function (newValue, oldValue) {
                 options = newValue;
                 updateChart();
-            });
+            }, deepWatchOptions);
 
             updateChart();
         };
@@ -44,7 +45,9 @@
                 options: '=',
                 ngId: '@',
                 type: '@',
-                responsiveOptions: '='
+                responsiveOptions: '=',
+                deepWatchData: '=',
+                deepWatchOptions: '='
             },
             link: linkFn
         };
