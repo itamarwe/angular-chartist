@@ -14,11 +14,11 @@
 
             updateChart = function () {
 
-                if (type == 'line'){
+                if (type === 'line'){
                     Chartist.Line(selector, data, options, responsiveOptions);
-                }else if (type == 'bar'){
+                }else if (type === 'bar'){
                     Chartist.Bar(selector, data, options, responsiveOptions);
-                }else if (type == 'pie'){
+                }else if (type === 'pie'){
                     Chartist.Pie(selector, data, options, responsiveOptions);
                 }
             };
