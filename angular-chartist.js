@@ -3,7 +3,7 @@
 
     angularChartist.directive('chartist', function () {
         var linkFn = function (scope, elm, attrs) {
-            var data, options, responsiveOptions, selector, updateChart, deepWatchData, deepWatchOptions, deepwatch;
+            var data, options, responsiveOptions, selector, updateChart, deepWatchData, deepWatchOptions, deepwatch, type;
             data = scope.data;
             options = scope.options;
             responsiveOptions = scope.responsiveOptions;
